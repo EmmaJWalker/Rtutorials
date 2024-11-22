@@ -1,0 +1,353 @@
+---
+title: "Basic R for Everyone"
+author: "Emma"
+output: pdf_document
+---
+
+##Working with computers
+- comps work essentially by flipping internal switches on and off
+(letting current flow through wires or not)
+- earliest comps humans plug/unplug wires to communicate with them
+eg. imitation game
+- can take a comp sci coures to learn more
+
+##Graphical user interfaces vs. text based user interfaces
+- now most people interact with a computer through a GUI (Graphical User Interface)
+- what you see on your screen and can interact w by clicking when you open up a program eg. excel
+
+#DISADVANTAGES: slow & not east to replicate
+
+- annoying navigating tons of drop down menus to select commands of what you want the computer to do
+- now think how annoying it is to do the exact same series of clicks: opening a doc, using drop down and pop up menus to modify it, closing the doc, opening a new one, rep
+and doing this 50+ times!
+- how about 9 MILLION times???? not even possible
+and difficult to describe precisely how someone else (potentially on a diff comp) can rep this process
+- WHY WE CODE!
+
+- comps speak in binary 1s & 0s, on & offs
+
+- humans took time to take particular sequences of 1s & 0s, “naming” and definining them to make languages s.t. these patterns of on/offs are associated w keywords & keystrokes we can use more intuitively to tell a comp what to do
+
+- why seperate comp languages not english, japanese or arabic?
+
+- our languages have objectives other than efficient communication of commands in an appropiate logical and chronological manner for a comp to quickly interpret them
+- eg. we might ask someone to “please make me a sandwhich”
+- comp (not upset if you don’t say please!)
+- sandwhich()
+- also humans are liable to error in putting together recipes and failing to replicate instructions exactly
+-eg. you might say "please make us a pb & j sandwhich with two tbsps pb and one of jam
+and someone with a different set of measuring spoons measures out not quite two tbsp pb, gets interrupted by a friend walking into their office and forgets to add the jam 
+(you may think, hey! well I would never forget to put jam on a pb & j sandwhich, but what about whether you transformed a column of your data before doing a particular analysis or not? There are lots of steps to data analysis that can be easy to forget, especially if it was something you did quite a while back)
+
+-sandwhich(pb=2, jam=1) gives exact same sandwhich always! no matter who runs it & on what machine
+
+-as good scientists we want everything as replicateable as possible!
+
+learning a new language can be intimidating 
+- but you've got a dictionary (built into R)! and the internet!
+- stack overflow can tell you how to to 90% things
+- and even better, you've also got AI tools like chatGPT at your finger tips to help you out! (chatGPT is pretty good
+but important to be aware it can also make mistakes so it's important you be able to review it's output, break it down and understand it for yourself so you can detect and fix any of those mistakes)
+this tutorial should give you enough of a basic understanding of are that you can get started on this!
+
+R STUDIO: 4 PANELS (or 3 at first -open a script)
+
+1. text editor/scripting panel: where you write code that can be saved and re-run
+2. console: where you will see what the comp ran and output
+3. environment: see files, & things we have defined in our work session
+4. files/help/plots: HELP HAS CHEATSHEETS!
+OPEN R notebook: - the text editor, scriptinging panel and console are now merged into one - can type ordinary text notes - can type code to be run - & run and save output with the result diplayed directly below the code that was run
+
+```{r}
+rm(list=ls())
+```
+
+```{r}
+3+5
+```
+
+Assign output to an "object" (variable)
+```{r}
+x<-3
+```
+
+```{r}
+x+2
+```
+
+RULES FOR NAMING:
+1. keep it short but descriptive
+species
+sp
+2. cannot start with a number eg. 2x (could write x2)
+3. case sensitive Cat != cat
+4. cannot have spaces (DNA_seq DNA.seq work)
+5. cannot use names that already exist in R (eg.pi)
+```{r}
+?Reserved
+```
+
+RECCOMENDED:
+1. nouns for variables (objects)
+2. verbs for functions
+
+```{r}
+selection_coef<-0.22
+```
+
+```{r}
+print(selection_coef)
+```
+
+##LOGICAL STATEMENTS
+
+```{r}
+selection_coef<1
+```
+
+
+```{r}
+if (selection_coef<1){
+  print("T")
+}
+```
+
+```{r}
+if (selection_coef>1){
+  print("OMG")
+}
+```
+
+## FUNCTIONS & arguments
+function = recipe
+parameters = ingredients
+arguments = input (quantities)
+output (return value) = output (sandwhich)
+
+```{r}
+?round()
+```
+
+```{r}
+round(pi)
+```
+
+```{r}
+round(x=pi, digits=2)
+```
+
+```{r}
+round(pi,2)
+```
+
+```{r}
+round(digits=2, x=pi)
+```
+
+but note: 
+```{r}
+round(2, pi)
+```
+rounds 2 not pi
+
+## writing functions
+```{r}
+add <- function(x, y){
+  output<-x+y
+  return(output)
+}
+```
+
+```{r}
+add(x=4,y=5)
+```
+
+```{r}
+add(3,2)
+```
+
+## VECTORS and data types
+
+vectors = series of values
+build vectors with concatenate c()
+
+```{r}
+DNA_seq<-c("A","T","C","G")
+DNA_seq
+```
+
+```{r}
+DNA_seq2<-c(DNA_seq, "T", "T", "T", "T")
+DNA_seq2
+```
+
+```{r}
+vec<-seq(0,10)
+vec
+```
+
+```{r}
+seq(0,10,2)
+```
+```{r}
+0:10
+```
+
+```{r}
+length(DNA_seq)
+```
+
+```{r}
+class(DNA_seq)
+```
+
+```{r}
+class(vec)
+```
+
+Atomic vector = contains series of only one data type
+list = conatins a series of potentially multiple types of objects
+matrix = 2D array of one datatype (numeric)
+data.frame = special 2D array of vectors (has vectors as columns)
+
+## SUBSETTING vecs
+
+```{r}
+DNA_seq[3]
+```
+
+```{r}
+DNA_seq<-DNA_seq[c(1,2,3,2,1,4,4,3,2,1)]
+DNA_seq
+```
+
+## CONDITIONAL subsetting
+
+```{r}
+DNA_seq[c(T,F,T,T,T,T,F,F)]
+```
+
+```{r}
+DNA_seq=="T"
+```
+
+```{r}
+DNA_seq[DNA_seq=="T"]
+```
+
+## LOOPS and vectors
+
+for loop = for each element in a list/vec do __________
+
+```{r}
+RNA_seq<-DNA_seq
+for (base in 1:length(RNA_seq)){
+  if (RNA_seq[base]=="T"){
+    RNA_seq[base]<-"U"
+  }
+}
+print(RNA_seq)
+```
+
+```{r}
+v<-c(1,2,3,4)
+for(i in 1:4){
+  print(v[i]*2)
+}
+```
+
+## NAs
+
+NA = missing data
+
+```{r}
+pop.size<-c(10,22,15,NA,23)
+mean(pop.size)
+```
+
+remove NAs
+na.rm=TRUE
+REALLY IMPORTANT to always say why data is excluded or there is missing data!
+
+```{r}
+mean(pop.size, na.rm=T)
+```
+
+```{r}
+is.na(pop.size)
+```
+
+```{r}
+pop.size[!is.na(pop.size)]
+```
+
+```{r}
+pop.size[complete.cases(pop.size)]
+```
+
+```{r}
+na.omit(pop.size)
+```
+Installing Packages
+```{r}
+#install.packages("tidyverse")
+library(tidyverse)
+```
+
+2. check working directory and set it
+working directory = file path telling R where to look for things and save things
+
+```{r setup}
+    knitr::opts_knit$set(root.dir = normalizePath("C:/Users/abuga/OneDrive/Desktop/lecs")) 
+```
+
+READING in data:
+```{r}
+data<-read_csv("Microbiome.csv")
+data
+```
+
+write data using write.csv
+
+```{r}
+data<-iris
+head(data)
+data$Species
+```
+
+
+#plotting
+```{r}
+plot(data$Petal.Length, data$Petal.Width)
+```
+
+```{r}
+plot(data$Species, data$Petal.Width)
+```
+
+```{r}
+write.csv(data, "Iris_data.csv")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,577 @@
+---
+title: "R: Made Easy as Pie"
+author: "Emma"
+output: pdf_document
+---
+
+## how you're probably used to working with computers
+- Graphical User Interfaces (GUIs)
+- this is typically what you see on the screen when you open just about anything on your computer
+- basically stuff in a box on the screen where you tell the computer what you want it to do mostly by pointing and at clicking things
+e.g. what appears when you open excel, which includes a spreadsheet of cells you can click on and a bunch of drop down menus from which you can select things you want to tell the computer to do with the contents of those cells
+- but if you've ever had to do ALOT of analyses on ALOT of messy and complicated data in excel, you'll know that if you're trying to do this by selecting cells and navigating those all those drop down menus this gets complicated, boring and annoying fast
+- and it gets even worse, if you want it to do those same exact things over and over again, meaning you've got to repeat specific sequences of selecting and clicking over and over again ... say 50+ times! that could give you a really sore hand and fingers
+- how about 9 MILLION times???? not even possible... and if you're trying to work with a super huge dataset (which you might have to depending on the topic of your thesis) you may actually need to perform some series of calculations that many times over!!! meaning your thesis is actually impossible without learning a method that's more efficient than pointing clicking (basically the equivalent of grunting and pointing at things) to communicate with your computer
+- plus its super difficult to describe to someone else (potentially on a different device with a slightly different interface) how to rep some process by navigating around on a screen and following a bunch of menu options, especially when things might be displayed differently on their device
+- and it's super easy to forget or mess up a step!
+DISADVANTAGES: slow & hard to replicate
+- WHY WE CODE!
+
+## how is working any Rstudio different?
+- if you're opening up Rstudio for the first time, it doesn't really look at different to any other computer program you've used before
+- there's a bunch of display panels and drop down menus and tabs (basically a bunch of stuff to click and tell the computer to do things)
+- Rstudio, is a Graphical User Interface for R
+- but the point of coding is to:
+* tell the computer to do everything you want it to do
+* with as little clicking as possible!
+* this way you have a written record everything you told it to do
+* that you can tell it to do again in the future as many times as you want and on any other computer, simply by telling it to run -essentially hitting "play" on- a set of instructions given by the code you typed
+* Rstudio just is there to help make the process of writing that code a little easier, not to tell your computer what to do
+
+## what is R?
+- R is not a kind of software/computer program
+- it is a language, the basics of which your computer has been taught to understand when you downloaded it (wouldn't it be nice if we could learn a language like R that quickly and easily ourselves)
+- but it is not it's native language, just like your native language might not be English
+- a computer's native language is Binary, a language made up of 1s and 0s (on and offs) that mean to it only connect these wires or don't connect these wires
+fun fact: back when computers were first made we could only tell them what to do by physically plugging and unplugging wires in them (a great example of this can be seen in the imitation game, a great movie you should all watch if you haven't already)
+- obviously that was really annoying so humans took the time to take particular sequences of 1s & 0s, and "name" them so we can tell the computer to connect and disconnect those wires and do the things we want it to do in a way that's much more intuitive and efficient for us; that is by using "code" words and symbols
+- thus using such a code gives us a common "language" with which to communicate with a computer
+
+## if we can teach a computer a language, why do I have to learn R and why can't I just speak to it in English, Japanese or Arabic?
+- our languages are complex, full of inconsistencies in their grammar, words that mean one thing in one context but something else in another
+- they were built with objectives other than just direct and efficient communication of orders to do specific tasks in only one set chronological order 
+e.g. with thanksgiving around the corner we might want someone to bake us a pie
+instead of asking the computer "would you please bake me a pie?"
+* the computer will not be upset if you don't say please, you could just give it a command like
+* bakepie()
+- also humans are liable to error in putting together recipes and failing to replicate instructions exactly
+* they might use a different pie recipe to make a different pie (e.g. peach instead of pumpkin - a real tragedy since I hate peach pie and love pumpkin)
+* forget a small but critical step ( like adding the sugar) or perform one step out of order and messing up the pie completely
+-but if we wrote the computer a specific recipe of how to bake a pies with any given set of main ingredients and named those instructions bakepie() we could just write 
+* bakepie(ingredients="pumpkin")
+we would never have to write down how to bake a pie for a given set of main ingredients again and it would always always always make that same exact pie with the same exact ingredients we tell it to (no matter who ran it, anywhere in the world and on what machine)
+-as good scientists we want everything as repeatable as possible! and coding is great for that!
+
+## learning a new language can be intimidating 
+- but fear not! you've got a dictionary (built into Rstudio)! 
+- and the internet!
+- stack overflow can tell you how to to 90% things
+- and you've got it even easier than students back in my day had it because you can also use ChatGPT too!
+* ChatGPT is pretty good but it's important you're aware that it can also make mistakes so it's important to review it's output, break it down and understand it for yourself so you can catch and fix any of those mistakes
+* the point of this tutorial is not to teach you the full language of R, or even all the basic things defined in R, there's no time for that, we would be here forever
+* the point is to equip you with the basic skills that are going to make learning to do anything you want to do in R easier and begin to dissect and understand code stack overflow, ChatGPT or someone else you're working with might give you so you can write more and more things on your own!
+
+## R STUDIO: 
+- 4 PANELS (or 3 at first -open a script)
+1. text editor/scripting panel: where you write code that can be saved and re-run
+2. console: where you will see what the comp ran and output
+3. environment: see everything we have given our computer a definition of in R of during your current Rstudio session (more on this later)
+4. files/help/plots: HELP is your dictionary! It will give you info on any and all things your computer already understands in the language R
+* IT EVEN HAS CHEATSHEETS to remind you of all the basics of how to communicate to your computer in R!
+* (click on the house in the help window) -print these off, stick 'em up around your desk!
+
+But remember everything we want the computer to do, we are going to want to type as code so it can do it again whenever we want.
+3 options: 
+1. OPEN an R script: this lets you only write code (anything you don't want run as code must be commented out using #'s)
+2. OPEN an R markdown: this lets you write notes for yourself sepperate from code for the computer to run and generate documents like pdfs of everything you wrote
+3. OPEN an R notebook: this lets us write notes sepperate from code AND view tables and figures and other output from running our code all in one panel and save it all in a document like a pdf to look at later without opening up the notebook again and rerunning everything!
+
+## HANDY SHORTCUTS:
+insert: 
+CTRL-ALt-i PC
+CMND-OPT-i MAC
+run:
+one line:
+CRTL-ENTER PC
+CMND-ENTER MAC
+chunk:
+CTRL-ALT-c PC
+CMND-OPT-c MAC
+
+Okay. Now lets finally get coding!!!!
+
+Particularly when you're new to R, it's a good idea to add this 
+```{r}
+rm(list=ls())
+```
+to your first line of code in R
+Why? Because sometimes when you're first learning (or just working on different parts of a lot of code all in one document) it's easy to clutter up R with things you've forgotten you told R but R will remember throughout the whole time you have Rstudio open on your computer. This basically just wipes your computer's "memory" of anything new you have told it since opening Rstudio. And since we want to be good scientists and ensure everything we tell the computer to do will be repeated exactly on this or any other machine with R and R studio on it, putting this at the start of all your code and periodically running everything in the document in order and checking you get all the same output ensures this.
+
+Good news! Our computer already understands basic arithmetic and it's written in R as on a calculator, in google or excel
+```{r}
+3+5
+```
+
+It even already knows some special numbers like pi!
+```{r}
+pi
+```
+Remember, we can always look up what our computer knows in R in the Help tab -try searching pi
+and it tells us what it knows about pi, as well as some other built in constants
+
+That's great! We can do a lot with what our computer already knows and understands in R. But ultimately we want to teach it to do new things with the things we're going to give it (like datasets eventually).
+
+## 1. VALUES
+The first thing we want to know how to do to get started on that is how to store information in "objects" and give them names
+The simplest object we can name and store info in R, is a single value
+e.g. let's take 3 and call it x
+```{r}
+x<-3
+```
+You will notice after running this, that x has now appeared in your "Environment" and that it contains the value 3
+Your environment is like an ever expanding dictionary of everything you are teaching your computer in R during the time you've had Rstudio open
+
+This means you told your comp x is 3, and it's going to remember and use it as such forever after this until you close Rstudio 
+So from here on out you can use x same as the number 3
+```{r}
+x+2
+```
+
+that is, unless, we later in our code tell our computer x is something new in R
+```{r}
+x<-2
+```
+makes x now be 2 from here on out in every subsequently run line of code.
+```{r}
+x+2
+```
+that is, unless, we rerun the line above where we called x<-3 and then don't run the chunk in which we made it 2 and then writing and running more code, 
+then your computer will continue to supply the number 3 when you type x in all the subsequent code.
+```{r}
+x+2
+```
+This is why as you are woking through your code you may get different results from running the same lines of code out of order. This makes whatever work you do unreproducible by yourself or anyone else who doesn't know or can't remember what order you ran the different parts of your code in. This is why it is important to periodically ensure that running all your code in order from start to finish from a fresh new environment does exactly the same things you wrote it to. That's why I put that little line of code to wipe the environment clean at the start of almost everything I code in R (at least while I'm working on developing it). It's fine to run things out of order while you're writing and testing code out, just make certain it runs the way you want when you wipe it clean and run it all in order.
+
+we also don't have to give things only boring and maybe not very informative names like x
+we could teach our computer that x+2 is potato and then do math with potato if we wanted to
+```{r}
+potato<-x+2
+potato+5
+```
+so a name used like so basically create a container in which am object like a value is stored
+```{r}
+box<-6+4 # we can put 6 and 4 in a box
+box*5 # and multiply what's in that box by 5
+```
+
+aside: why do we use this <- instead of = to tell R what something is in R?
+1. the language R was actually first developed when there was an arrow key that looked like that on keyboards
+2. <- and = are almost always interchangeable in R and most people use them as such but there is in fact a difference as we will later see!
+
+RULES FOR NAMING OBJECTS:
+1. keep it short but descriptive (you want to remember what these names mean so potato is probably a bad name to use for something)
+- selection coefficient is a terrible name because it's long to type and contains a space so your computer will think selection and coefficient are two different things
+- s might be great because it's really simple and fast to type unless our code is going to contain a lot of things that start with s and might forget to which s is refering to
+- you also want anyone else reading and maybe less familiar with your code to be able to read and understand it without having to put too much effort into learning what you named things
+- selection_coef could be a great middle ground
+```{r}
+selection_coef<-0.22
+```
+2. do not start with a number eg. 2x (could write x2)
+3. case sensitive Cat != cat
+4. do not have spaces (DNA_seq DNA.seq work)
+5. do not use other any special characters
+5. do not use names that already exist in R (eg.pi)
+```{r}
+?Reserved
+```
+
+RECCOMENDED:
+1. nouns for objects
+2. verbs for functions
+
+remember numbers are already in R's dictionary but
+words that haven't already been defined as "code" words telling our computer to do something with them are not.
+but we can still have our computer store words just as words and not a "code" words telling our computer to do something with them
+e.g. if I wanted the comp to remember my fav pie is pecan for me I could write
+```{r}
+fav_pie<-"pecan"
+```
+which actually stores the string of letters (or characters as we might call them) spelling "pecan" as a value inside the name fav_pie 
+this kind of value is called a character string
+
+it is different from the name of an object in that it is not a "code" word for anything else, it is just a collection of letters 
+```{r}
+"pecan"
+```
+
+meanwhile
+```{r}
+pecan
+```
+pecan has no meaning in R
+
+but if I want my comp to tell me my favourite kind of pie, typing fav_pie will make my computer reply with the series of letters spelling "pecan"
+```{r}
+fav_pie
+```
+
+## Classes
+- the type of an object in R is called a class
+- and we can find out the class of an object by using a function called class
+```{r}
+class(x)
+class(fav_pie)
+```
+
+okay all that was cool but what if I want my computer to store and use more than just one value at a time? 
+what if I want a list of all my favourite pies?
+
+# Basic Functions, Vectors and Lists oh my!
+remember I said your computer already knows the meaning of a bunch of things in the language that is "R"
+this includes a whole bunch of basic things we can tell it do with the objects we give it
+we just need to know how to tell it what we want it to do in R
+
+how can we approach this?
+- when you have no idea how to do something in R it can be super tempting to immediately turn to google and stack overflow (if you're oldschool like me) or ChatGPT but typing out "how do I make a list of things in R" is a lot of effort and I'm such a lazy coder I don't even want to do that!
+- instead let's take a guess at what a function that makes a list of things we give it might be called
+- maybe something like... list?
+- we could search for whether there is anything called list in the help tab but honestly, I'm even to lazy to click on that and fully type out list
+- instead I'm going to start typing it out here where I'm trying to write my code but I'm going to hit tab as I'm typing
+-notice the drop down menu looking things up in R's dictionary that start with the letters I'm typing
+```{r}
+list()
+```
+- AHA! there is something called list, and I know it's a function because these little brackets appear in which I am going to provide R with more information on how to make the list
+- that's great but I don't know how to use the list function or what to even put in those brackets
+- add a ? to the beginning of the function
+```{r}
+?list()
+```
+Okay... now in the help tab it's telling me what lists are and how to use them in R
+I can see the list(...) function along with some others which must do other list related things
+- beneath this is a heading called arguments and beneath it it tells me ... may be objects, possibly named
+cool! we just learned that objects can be values, which can contain words if we put them in quotes like we did "pecan" so let's try this
+```{r}
+fav_pies<-list("apple", "pumpkin", "pecan")
+```
+Now we see a new kind of object has appeared in the Global Environment
+It's called fav_pies and it says it's a list of 3 things and it's got a little toggle arrow next to it so let's click it
+- here we can see the 3 things it contains after $ : chr
+- this gives us some intuition as to how lists are structured and
+- the chr indicates these objects in the list are each character values
+
+neat! but now I have a list how can I access information in this list? say I want the seccond value in my list of favourite pies
+- we can do this with []'s
+```{r}
+fav_pies[2]
+```
+we do so and we see "pumpkin" but also perhaps confusingly there is also a [[1]] and [1] by it even though we indexed fav_pies by [2]
+-lists are clearly a bit more complicated in structure than just holding a series of values, which you can discover by playing around with them
+```{r}
+fav_pies[[1]]
+fav_pies[1][[1]]
+fav_pies[[2]]
+```
+oooh scary! but the key to learning R is to not be intimidated! you cannot break you computer with anything you tell it here. and good news, to do anything on your computer that would exist outside of this Rstudio session would require you to be very intentional about doing that so nothing you do here is of any consequence. remember, you can always go back wipe your computer's "memory" of things you've told it and start a new or from just before you ****ed something up. you will learn much more and much faster in R if you're not afraid to make mistakes, get messy and have fun! (I'm sounding like a cartoon character from my distant childhood...). Playing around with things is how you will develop your intuition and understanding of what objects and functions other people have created in R are and how they behave.
+
+## 2. VECTORS
+- a more efficient way to store just a series of values (including character values) we can use objects called vectors
+- vectors (unlike lists) can only hold one kind (or as we learned earlier class) of object (e.g. all numbers or all character values)
+- we can make vectors a few different ways
+
+we can simply stick stuff together and put it into another object (using the concatenate c() function)
+```{r}
+fav_pies<-c("apple", "pumpkin", "pecan")
+```
+now we can see fav_pies is no longer a list but instead an object that contains 3 things indexed 1 to 3 all of which are character values
+and if we want to grab one of those things we then only need the [] and it's index (position in the vector)
+```{r}
+fav_pies[2]
+```
+we can also concatenate the current contents of a vector with more things we would like to store in that vector and make longer and more complicated vectors
+lets do this and explore what would happen if we tried to also put a number in this vector
+```{r}
+fav_pies<-c(fav_pies,5)
+fav_pies
+```
+notice that 5 is not stored as a number but in quotes as a character. we can no longer add with it
+```{r}
+fav_pies[4]+1
+```
+this is because a vector can only contain one kind of value so R automatically "coerced" 5 into being a character value to comply with this requirement
+
+where as if we give our computer a vector of numbers
+```{r}
+x<-c(1,2,10)
+x[3]+1
+x+1
+```
+we can do math with any or all of those numbers at once
+
+## 3. LISTS
+so hold up what's the difference between a vector and a list? 
+- well like I said earlier, a list can contain objects of different kinds (classes)
+- we can also give those different objects each their own name, that we can then pull them out of the list by!
+e.g. we can make a list that contains all the information we need to know about making pies for our upcoming thanksgiving party
+by providing it with the vector of our favourite pies and how many guests we're expecting at thanksgiving
+```{r}
+thanksgiving<-list(fav_pies, guests=5)
+```
+- notice I used the = sign here instead of the little <-, try out doing the opposite for yourself! 
+this is an instance in which we can see that the two do not mean the same thing
+- if you look in the environment you will see here that only if you provide an object name followed by an =, before providing the contents we want that object to hold, 
+does that name appear next the $ followed by a description of the contents within that object
+
+this enables us to access the contents of that object in the list by using the name of the list followed by a $ followed by the name of the list
+```{r}
+thanksgiving$guests
+```
+but we can't do the same for fav_pies
+even
+```{r}
+fav_pies=c("apple", "pumpkin", "pecan")
+thanksgiving<-list(fav_pies, guests=5)
+```
+won't do it
+what about if we want the number of guests... could we just type?
+```{r}
+guests
+```
+nope. because guests has not been added as a name of something in your computer's R dictionary, it has only been added as the name of something in the list called thanksgiving
+but thanksgiving as the name of a list has been added to your computer's R dictionary
+to name things in a list we have to name them in the list, and their names don't exist outside of that list
+and lists essentially make subdictionaries within the dictionary that is R!!!!
+
+Okay but I only want to use R to process and analyze data. why do I care about lists????
+because dataframes (and even more complex data structures you may encounter) are really just a special kind of lists!
+
+## 4. DATAFRAMES
+The basic dictionary of R even already includes some data for us to play with and use as toy examples
+```{r}
+iris
+```
+```{r}
+class(iris)
+```
+```{r}
+data<-iris
+```
+
+```{r}
+data$Sepal.Length
+```
+
+data.frames are just lists of vectors in R! Each vector in the list is a column in the data.frame that we can pull out of the data.frame by using it's name in the list!!!
+then we can pull out values from these column vectors same as we would from any other vector in R
+```{r}
+data$Sepal.Length[2]
+```
+
+Remember that vectors a class that is consistent amoung all the values they contain. e.g. they can only be all character or all numeric
+this means the data you supply to R in a data.frame will always be coerced into being all the same kind of data within a column of that dataframe. remembered what happened when we tried to put the number 5 into our vector of fav_pies?
+this is why you cannot have a mix of numeric and categorical (e.g. character) data in the columns of a data.frame in R. if you do it will treat it as one type or another which can be nonsensical for what you want it to do with the data.
+this is why it is good to check that each column of whatever data you provide the computer with using R is being understood by the computer to be the correct kind
+remember you can do this by using the class function 
+```{r}
+class(data$Sepal.Length)
+```
+
+In general we can only do certain things with particular classes (types) of objects
+```{r}
+sum(data$Sepal.Length)
+sum(fav_pies)
+```
+we can't add up types of pie but we can add integers or numeric values
+
+another very basic and very useful class is "logical", "logical" values can only be TRUE or FALSE 
+
+##LOGICAL STATEMENTS
+which brings us to another thing your computer already understands in R, and that is how to check if something you tell it is true or false
+
+e.g. we can check
+```{r}
+selection_coef<1
+is.numeric(data$Sepal.Length)
+any(fav_pies=="peach")
+```
+
+we can tell it to do something only if something is true
+```{r}
+if (selection_coef<1){
+  print("YES")
+}
+```
+vs
+```{r}
+if (selection_coef>1){
+  print("YES")
+}
+```
+
+we can tell it do something only if something is true and otherise only do something else if it is false
+```{r}
+if (selection_coef>1){
+  print("YES")
+} else {
+  print("NOPE")
+}
+```
+this lets you give computer different instructions on what to do based on different circumstances of things you are providing it
+
+## CONDITIONAL SUBSETTING
+
+logicals are also how we can extract values out of a vector
+```{r}
+x<-1:10
+x[x>5]
+```
+
+```{r}
+fav_pies[fav_pies=="pumpkin"]
+```
+
+Challenge try:
+what does it give you and why?
+```{r}
+pies<-c("apple", "peach", "pumpkin")
+pies[pies==fav_pies]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+DNA_seq[c(T,F,T,T,T,T,F,F)]
+```
+
+```{r}
+DNA_seq=="T"
+```
+
+```{r}
+DNA_seq[DNA_seq=="T"]
+```
+
+## LOOPS and vectors
+
+for loop = for each element in a list/vec do __________
+
+```{r}
+RNA_seq<-DNA_seq
+for (base in 1:length(RNA_seq)){
+  if (RNA_seq[base]=="T"){
+    RNA_seq[base]<-"U"
+  }
+}
+print(RNA_seq)
+```
+
+```{r}
+v<-c(1,2,3,4)
+for(i in 1:4){
+  print(v[i]*2)
+}
+```
+
+## NAs
+
+NA = missing data
+
+```{r}
+pop.size<-c(10,22,15,NA,23)
+mean(pop.size)
+```
+
+remove NAs
+na.rm=TRUE
+REALLY IMPORTANT to always say why data is excluded or there is missing data!
+
+```{r}
+mean(pop.size, na.rm=T)
+```
+
+```{r}
+is.na(pop.size)
+```
+
+```{r}
+pop.size[!is.na(pop.size)]
+```
+
+```{r}
+pop.size[complete.cases(pop.size)]
+```
+
+```{r}
+na.omit(pop.size)
+```
+Installing Packages
+```{r}
+#install.packages("tidyverse")
+library(tidyverse)
+```
+
+2. check working directory and set it
+working directory = file path telling R where to look for things and save things
+
+```{r setup}
+    knitr::opts_knit$set(root.dir = normalizePath("C:/Users/abuga/OneDrive/Desktop/lecs")) 
+```
+
+READING in data:
+```{r}
+data<-read_csv("Microbiome.csv")
+data
+```
+
+write data using write.csv
+
+```{r}
+data<-iris
+head(data)
+data$Species
+```
+
+
+#plotting
+```{r}
+plot(data$Petal.Length, data$Petal.Width)
+```
+
+```{r}
+plot(data$Species, data$Petal.Width)
+```
+
+```{r}
+write.csv(data, "Iris_data.csv")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
